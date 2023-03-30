@@ -1,4 +1,3 @@
-
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
@@ -7,6 +6,9 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import kpiRoutes from "./routes/kpi.js"
+import KPI from "./models/KPI.js"
+import { kpis } from "./data/data.js"
+
 
 /* CONFIGURATIONS */
 dotenv.config();
@@ -31,6 +33,9 @@ mongoose
     })
     .then(async () => {
         app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+        await mongoose.connection.db.dropDatabase();
+        KPI.insertMany(kpis)
+        // do not do this when working with a real database right now this is just deleting seed data.
 
         /* ADD DATA ONE TIME ONLY OR AS NEEDED */
         // await mongoose.connection.db.dropDatabase();
