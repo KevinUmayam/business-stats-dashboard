@@ -226,7 +226,7 @@ const Row1 = (props: Props) => {
                 <stop
                   offset="5%"
                   stopColor={palette.primary[300]}
-                  stopOpacity={1}
+                  stopOpacity={0.8}
                 />
                 <stop
                   offset="95%"
